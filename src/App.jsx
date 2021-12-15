@@ -1,12 +1,29 @@
+import PropTypes from "prop-types";
 import React from "react";
-
-function App() {
+function App({ title, question, confirmationHandler, cancelHandler }) {
   return (
-    <h1 className="capitalize mt-3 text-3xl text-center text-red-500">
-      {" "}
-      Hello world!{" "}
-    </h1>
+    <div role="dialog">
+      <h1>{title}</h1>
+      {question}
+      <button name="ok" onClick={confirmationHandler}>
+        OK
+      </button>
+      <button name="cancel" onClick={cancelHandler}>
+        Cancel
+      </button>
+    </div>
   );
 }
+
+App.propTypes = {
+  cancelHandler: PropTypes.func.isRequired,
+  confirmationHandler: PropTypes.func.isRequired,
+  question: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
+
+App.defaultProps = {
+  title: "Confirmation",
+};
 
 export default App;
